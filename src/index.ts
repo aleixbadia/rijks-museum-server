@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import authRouter from "./routes/auth.routes";
 import userRouter from "./routes/user.routes";
+import artObjRouter from "./routes/artObj.routes";
 import passportConfig from "./config/passport.config";
 
 dotenv.config();
@@ -33,6 +34,7 @@ passportConfig(app)
 // Routes
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
+app.use("/artObj", artObjRouter);
 
 app.listen(`${process.env.PORT}`, () => {
   console.log(`Server started at port ${process.env.PORT}`);

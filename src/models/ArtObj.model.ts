@@ -31,6 +31,7 @@ const artObj = new Schema({
     url: String,
   },
   productionPlaces: [String],
+  description: String,
 });
 
 export default mongoose.model("ArtObj", artObj);

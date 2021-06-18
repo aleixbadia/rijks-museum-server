@@ -7,24 +7,22 @@ import { DBUserInterface } from "../interfaces/UserInterface";
 
 const router = express.Router();
 
-router.post("/register", async (req, res) => {
+router.post("/signup", async (req, res) => {
   const { username, password } = req.body;
-  console.log(req.body);
-  console.log(username, password);
   if (
     !username ||
     !password ||
     typeof username !== "string" ||
     typeof password !== "string"
   ) {
-    res.send("Improper Values");
+    res.send("improper");
     return;
   }
   User.findOne(
     { username },
     async (err: mongoose.CallbackError, doc: DBUserInterface) => {
       if (err) throw err;
-      if (doc) res.send("User Already Exists");
+      if (doc) res.send("exists");
       if (!doc) {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({
@@ -36,8 +34,7 @@ router.post("/register", async (req, res) => {
           if (error) {
             return res.status(500).json(error);
           }
-
-          return res.status(200).json(newUser);
+          return res.status(200).send("success");
         });
       }
     }
@@ -48,7 +45,7 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
   res.send("success");
 });
 
-router.get("/user", (req, res) => {
+router.get("/me", (req, res) => {
   res.send(req.user);
 });
 
