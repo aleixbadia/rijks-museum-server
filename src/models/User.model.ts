@@ -1,11 +1,10 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
-const ObjectId = Schema.Types.ObjectId;
 
 export type UserDocument = mongoose.Document & {
   username: string;
   password: string;
-  favArtObj: [];
+  favArtObj: [string];
 };
 
 const user = new Schema<UserDocument>({
@@ -14,7 +13,7 @@ const user = new Schema<UserDocument>({
     unique: true
   },
   password: String,
-  favArtObj: [{ type: ObjectId, ref: "ArtObj" }]
+  favArtObj: [String]
 });
 
 export default mongoose.model<UserDocument>("User", user);
