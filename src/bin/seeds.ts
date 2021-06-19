@@ -20,7 +20,7 @@ const seeds = async () => {
 
   await db.connection.dropDatabase();
 
-  const allArtObj = await rijksApi.get("?key=1cGiJiKL&ps=16");
+  const allArtObj = await rijksApi.get("?key=1cGiJiKL&ps=100");
 
   let DBAllArtObj = allArtObj.data.artObjects.map(
     async (artObj:any) => {
@@ -28,7 +28,7 @@ const seeds = async () => {
         const artObjDetail = await rijksApi.get(
           `/${artObj.objectNumber}?key=1cGiJiKL`
         );
-        artObj.description = artObjDetail.data.artObject.description;
+        artObj.description = artObjDetail.data.artObject.label.description;
         return artObj;
       } catch (error) {
       }

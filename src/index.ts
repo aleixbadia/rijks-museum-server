@@ -36,6 +36,12 @@ app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/artObj", artObjRouter);
 
+// ROUTE FOR SERVING REACT APP (index.html)
+app.use((req, res, next) => {
+  // If no previous routes match the request, send back the React app.
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 app.listen(`${process.env.PORT}`, () => {
   console.log(`Server started at port ${process.env.PORT}`);
 });
