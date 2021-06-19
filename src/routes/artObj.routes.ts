@@ -36,7 +36,6 @@ router.get("/getAllFavs", async (req, res) => {
       },
       (err: mongoose.CallbackError, data: DBArtObjInterface[]) => {
         if (err) throw err;
-        console.log(data)
         res.send(data);
       }
     );

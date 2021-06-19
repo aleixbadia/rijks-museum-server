@@ -7,7 +7,6 @@ const router = express.Router();
 router.post("/addToFavs", isLoggedIn, async (req, res, next) => {
   const { artObjNum } = req.body;
   const user = req.user as UserDocument;
-  console.log(user)
   if(!user.favArtObj.includes(artObjNum)){
     await User.findByIdAndUpdate(user.id, {
       $push: { favArtObj: artObjNum },
