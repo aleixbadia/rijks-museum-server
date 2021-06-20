@@ -78,5 +78,3 @@ Url to repository and to deployed project
 
 [Repository Link](https://github.com/aleixbadia/rijks-museum-server)
 
-[Deploy Link]()
-
