@@ -6,7 +6,8 @@
   "scripts": {
     "seeds": "ts-node src/bin/seeds.ts",
     "start": "node build/dist/index.js",
-    "postinstall": "tsc"
+    "postinstall": "tsc",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -40,5 +41,6 @@
   },
   "engines": {
     "node": "14.x"
-  }
+  },
+  "heroku-run-build-script": true
 }
